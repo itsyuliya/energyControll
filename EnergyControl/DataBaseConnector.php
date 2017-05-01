@@ -47,15 +47,34 @@ class DataBaseConnector
             $sql = "SELECT * FROM $tableName";
             $result = $this->pdo->query($sql);
             $countColumn = $result->columnCount();
-
+            echo "<div class='container'>";
+            echo  "<div class='row centered mt grid'>";
+            echo "<table>";
+            ?>
+            <table>
+            <tr>
+            <th>Месяц</th>
+            <th>Водосбережения</th>
+            <th>Энергобережения</th>
+            <th>Теплобережения</th>
+            <th>Газобережения</th>
+            <th>Обслуживание коммунальных услуг</th>
+            <th>Дополнительные услуги</th>
+            </tr>
+            <?
             foreach ($result as $row)
             {
+
+                echo "<tr>";
                 for ($j = 0; $j < $countColumn; ++$j)
                 {
-                    echo $row[$j] . " ";
+                    echo "<td>". $row[$j] . "</td>";
                 }
-                echo "</br>";
+                echo "</tr>";
             }
+            echo "</table>";
+            echo "</div>";
+            echo  "</div>";
 
         }
         catch (TableNotFoundException $ex)

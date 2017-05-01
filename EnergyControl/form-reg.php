@@ -9,7 +9,7 @@
 </head> 
 <body>
     <div class="btn-back">
-        <a href="index.html"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+        <a href="index.php"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
     </div>
     </div>
 
@@ -22,7 +22,7 @@
                 <p><input type="submit" name = "submit" value="ЗАРЕГИСТРИРОВАТЬСЯ"></p>
             </fieldset>
         </form>
-        <p><a href="form.html">Вернуться назад</a></p>
+        <p><a href="form.php">Вернуться назад</a></p>
     </div>
 </body>
 </html>

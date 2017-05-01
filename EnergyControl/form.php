@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="btn-back">
-        <a href="index.html"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+        <a href="index.php"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
     </div>
     <div id="login">
         <h1>Авторизация</h1>
@@ -21,16 +21,11 @@
         </form>
         <p>Нет аккаунта? &nbsp;&nbsp;<a href="form-reg.php">Регистрация</a><span class="fontawesome-arrow-right"></span></p>
     </div>
+
 </body>
 </html>
-<?
-
+<?php
 // Страница авторизации
-
-
-
-# Функция для генерации случайной строки
-
 function generateCode($length=6) {
 
     $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHI JKLMNOPRQSTUVWXYZ0123456789";
@@ -46,18 +41,25 @@ function generateCode($length=6) {
     return $code;
 
 }
-# Соединямся с БД
+
+//session_start();
 
 mysql_connect("localhost", "root", "");
 
 mysql_select_db("energy");
 
-
+// // if (isset($_SESSION['login']))
+// // {
+// //     echo $_SESSION['login'] + " suc";
+// // }
+// else 
+// {
+//     //echo "retard";
+// }
 if(isset($_POST['submit']))
 
 {
 
-    # Вытаскиваем из БД запись, у которой логин равняеться введенному
 
     $query = mysql_query("SELECT user_password FROM users WHERE user_login='".mysql_real_escape_string($_POST['login'])."' LIMIT 1");
 
@@ -65,31 +67,16 @@ if(isset($_POST['submit']))
 
     
 
-    # Соавниваем пароли
 
     if($data['user_password'] === md5($_POST['password']))
 
     {
 
-        # Генерируем случайное число и шифруем его
-
         $hash = md5(generateCode(10));
-
-        
-
-        # Ставим куки
-
-        //setcookie("id", $data['user_login'], time()+60*60*24*30);
-
+        setcookie("id", $data['user_login'], time()+60*60*24*30);
         //setcookie("hash", $hash, time()+60*60*24*30);
-
-        
-
-        # Переадресовываем браузер на страницу проверки нашего скрипта
-
         //header("Location: check.php"); exit();
-        echo "YES!";
-
+        //$_SESSION['login'] = $_POST['login'];
     }
 
     else
@@ -101,5 +88,4 @@ if(isset($_POST['submit']))
     }
 
 }
-
 ?>
